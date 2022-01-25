@@ -1,12 +1,12 @@
 /**
  * @name Rich Presence
- * @version 1.0
+ * @version 1.0.0
  *
  * @author c0ld#9999
  * @description Dis Rich Presence with customizable settings.
  *
  *
- * @updateUrl https://raw.githubusercontent.com/AloneIsCool/RichPresence/main/Rich%20Presence.js
+ * @updateUrl https://raw.githubusercontent.com/AloneIsCool/RichPresence/main/RichPresence.js
 /*
 MIT License
 
@@ -3768,7 +3768,7 @@ class RichPresence {
   }
   initialize() {
     console.log("Starting Rich Presence");
-    window.ZeresPluginLibrary?.PluginUpdater?.checkForUpdate?.("Rich Presence", changelog.version, "https://raw.githubusercontent.com/AloneIsCool/RichPresence/main/Rich%20Presence.js");
+    window.ZeresPluginLibrary?.PluginUpdater?.checkForUpdate?.("Rich Presence", changelog.version, "https://raw.githubusercontent.com/AloneIsCool/RichPresence/main/RichPresence.js");
     BdApi.showToast("Rich Presence has started!");
     this.startTime = Date.now();
     this.settings = BdApi.loadData("Rich Presence", "settings") || {};
@@ -4186,7 +4186,7 @@ class RichPresence {
     div.innerHTML = '<a href="https://discordapp.com/developers/applications/me" rel="noreferrer noopener" target="_blank">Create or edit your Discord Rich Presence application here!</a>';
     panel.appendChild(div);
     div = document.createElement("div");
-    div.innerHTML = '<a href="https://raw.githubusercontent.com/AloneIsCool/RichPresence/main/Rich%20Presence.js" rel="noreferrer noopener" target="_blank">Click here for troubleshooting.</a>';
+    div.innerHTML = '<a href="https://raw.githubusercontent.com/AloneIsCool/RichPresence/main/RichPresence.js" rel="noreferrer noopener" target="_blank">Click here for troubleshooting.</a>';
     panel.appendChild(div);
     activeProfileDropdown.getElement().parentNode.style.overflow = "visible";
     editProfileDropdown.getElement().parentNode.style.overflow = "visible";
