@@ -1,6 +1,6 @@
 /**
  * @name Rich Presence
- * @version 1.0.0
+ * @version 1.0.1
  *
  * @author c0ld#9999
  * @description Dis Rich Presence with customizable settings.
@@ -34,15 +34,13 @@ SOFTWARE.
 
 const changelog = {
   title: "Rich Presence Updated!",
-  version: "1.0.0",
+ version: "1.0.1",
   changelog: [
     {
-      title: "v1.0.0: Rich presence profiles have been added!",
-      type: "added",
+      title: "1.0.1: Rich presence works again!",
+      type: "fixed",
       items: [
-        "You can now create multiple rich presence configurations and switch between them quickly.",
-        "Your settings have been automatically migrated to a new format that is not compatible with older versions.",
-        "Please report any bugs with the new profile system."
+        "Hopefully everything works again now."
       ]
     }
   ]
@@ -3761,21 +3759,21 @@ class RichPresence {
         }
       } catch (e) {
         console.error(e);
-        return BdApi.showToast('Rich Presence: "ZeresPluginLibrary" was not downloaded, or the download failed. This plugin cannot start.', {type: "error"});
+        return BdApi.showToast('RichPresence: "ZeresPluginLibrary" was not downloaded, or the download failed. This plugin cannot start.', {type: "error"});
       }
     }
     this.initialize();
   }
   initialize() {
-    console.log("Starting Rich Presence");
-    window.ZeresPluginLibrary?.PluginUpdater?.checkForUpdate?.("Rich Presence", changelog.version, "https://raw.githubusercontent.com/AloneIsCool/RichPresence/main/RichPresence.js");
-    BdApi.showToast("Rich Presence has started!");
+    console.log("Starting RichPresence");
+    window.ZeresPluginLibrary?.PluginUpdater?.checkForUpdate?.("RichPresence", changelog.version, "https://raw.githubusercontent.com/AloneIsCool/RichPresence/main/RichPresence.plugin.js");
+    BdApi.showToast("RichPresence has started!");
     this.startTime = Date.now();
-    this.settings = BdApi.loadData("Rich Presence", "settings") || {};
+    this.settings = BdApi.loadData("RichPresence", "settings") || {};
     if (this.settings.clientID || this.settings.details || this.settings.state) {
       this.migrateData();
     }
-    this.profiles = BdApi.loadData("Rich Presence", "profiles") || [];
+    this.profiles = BdApi.loadData("RichPresence", "profiles") || [];
     this.session = {
       editingProfile: this.settings.activeProfileID || 0,
       // When calling start/stop functions, this prevents crashes
@@ -3798,15 +3796,15 @@ class RichPresence {
     if (this.settings.rpcEventInjection) this.stopRichPresenceInjection();
     this.stopRichPresence();
     this.initialized = false;
-    BdApi.showToast("Rich Presence is stopping!");
+    BdApi.showToast("RichPresence is stopping!");
   }
   get activeProfile() {
     return this.profiles[this.settings.activeProfileID];
   }
   getSettingsPanel() {
     if (!this.initialized) return;
-    this.settings = BdApi.loadData("Rich Presence", "settings") || {};
-    this.profiles = BdApi.loadData("Rich Presence", "profiles") || [];
+    this.settings = BdApi.loadData("RichPresence", "settings") || {};
+    this.profiles = BdApi.loadData("RichPresence", "profiles") || [];
     const panel = document.createElement("form");
     panel.classList.add("form");
     panel.style.setProperty("width", "100%");
@@ -3948,6 +3946,7 @@ class RichPresence {
   }
   buildActivityObject() {
     const activityObject = {
+      isSocketConnected: () => true,
       socket: {
         transport: "ipc",
         id: "1",
@@ -4024,10 +4023,10 @@ class RichPresence {
     return activityObject;
   }
   updateSettings() {
-    BdApi.saveData("Rich Presence", "settings", this.settings);
+    BdApi.saveData("RichPresence", "settings", this.settings);
   }
   updateProfiles() {
-    BdApi.saveData("Rich Presence", "profiles", this.profiles);
+    BdApi.saveData("RichPresence", "profiles", this.profiles);
   }
   deleteProfile(id) {
     this.profiles.splice(id, 1);
@@ -4185,9 +4184,6 @@ class RichPresence {
     let div = document.createElement("div");
     div.innerHTML = '<a href="https://discordapp.com/developers/applications/me" rel="noreferrer noopener" target="_blank">Create or edit your Discord Rich Presence application here!</a>';
     panel.appendChild(div);
-    div = document.createElement("div");
-    div.innerHTML = '<a href="https://raw.githubusercontent.com/AloneIsCool/RichPresence/main/RichPresence.js" rel="noreferrer noopener" target="_blank">Click here for troubleshooting.</a>';
-    panel.appendChild(div);
     activeProfileDropdown.getElement().parentNode.style.overflow = "visible";
     editProfileDropdown.getElement().parentNode.style.overflow = "visible";
     profileInputs.get("name").addListener(() => {
@@ -4198,9 +4194,9 @@ class RichPresence {
     });
   }
   migrateData() {
-    let profilesData = BdApi.loadData("Rich Presence", "profiles");
+    let profilesData = BdApi.loadData("RichPresence", "profiles");
     if (profilesData) return;
-    this.settings = BdApi.loadData("Rich Presence", "settings");
+    this.settings = BdApi.loadData("RichPresence", "settings");
     this.settings.activeProfileID = 0;
     profilesData = [{
       name: "My Profile"
@@ -4239,7 +4235,7 @@ class RichPresence {
         onCancel: reject
       });
     });
-  }
+  } 
   delay(ms) {
     return new Promise(resolve => {
       setTimeout(resolve, ms);
