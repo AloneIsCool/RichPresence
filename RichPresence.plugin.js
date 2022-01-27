@@ -1,12 +1,17 @@
 /**
- * @name Rich Presence
+ * @name RichPresence
  * @version 1.0.1
  *
  * @author c0ld#9999
- * @description Dis Rich Presence with customizable settings.
+ * @authorId 438469378418409483
+ * @description Rich Presence with configurable settings.
  *
- *
- * @updateUrl https://raw.githubusercontent.com/AloneIsCool/RichPresence/main/RichPresence.js
+ 
+ * @updateUrl https://raw.githubusercontent.com/AloneIsCool/RichPresence/main/RichPresence.plugin.js
+ * @invite ZYND2Xd
+ * @authorLink https://github.com/AloneIsCool/RichPresence
+ * @source https://github.com/AloneIsCool/RichPresence/blob/main/RichPresence.plugin.js
+ * @website https://github.com/AloneIsCool/RichPresence
 /*
 MIT License
 
